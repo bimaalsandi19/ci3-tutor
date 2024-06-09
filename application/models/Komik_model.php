@@ -45,4 +45,11 @@ class Komik_model extends CI_Model
         $this->db->where('id', $id);
         $this->db->update('komik', $data);
     }
+
+    public function cariDataKomik()
+    {
+        $keyword = $this->input->post('keyword', true);
+        $this->db->like('judul', $keyword);
+        return $this->db->get('komik')->result_array();
+    }
 }

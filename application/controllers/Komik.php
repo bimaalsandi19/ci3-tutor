@@ -16,6 +16,9 @@ class Komik extends CI_Controller
             'active' => 'komik',
             'komik' => $this->Komik_model->getKomik()
         ];
+        if ($this->input->post('keyword')) {
+            $data['komik'] = $this->Komik_model->cariDataKomik();
+        }
         $this->load->view('layout/header', $data);
         $this->load->view('komik/index', $data);
         $this->load->view('layout/footer');

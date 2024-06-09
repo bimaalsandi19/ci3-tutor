@@ -1,6 +1,18 @@
 <div class="container">
     <h2>List Komik</h2>
     <a href="<?= site_url('/komik/create'); ?>" class="btn btn-primary my-3">Tambah Data</a>
+    <div class="row">
+        <div class="col-md-6">
+            <form action="" method="post">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Cari data komik" aria-label="Recipient's username" aria-describedby="button-addon2" name="keyword">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="submit" id="button-addon2">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     <?php if ($this->session->flashdata('success')) : ?>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             <?= $this->session->flashdata('success'); ?>
