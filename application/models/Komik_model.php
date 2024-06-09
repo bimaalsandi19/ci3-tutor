@@ -32,4 +32,17 @@ class Komik_model extends CI_Model
     {
         return $this->db->get_where('komik', ['id' => $id])->row_array();
     }
+
+    public function editDataKomik($id)
+    {
+        $data = [
+            'judul' => $this->input->post('judul', true),
+            'slug' => $this->input->post('slug', true),
+            'penulis' => $this->input->post('penulis', true),
+            'penerbit' => $this->input->post('penerbit', true),
+            'sampul' => $this->input->post('sampul', true),
+        ];
+        $this->db->where('id', $id);
+        $this->db->update('komik', $data);
+    }
 }

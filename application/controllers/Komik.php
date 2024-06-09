@@ -65,12 +65,58 @@ class Komik extends CI_Controller
         $data = [
             'title' => 'Edit Komik | Bimanime',
             'active' => 'komik',
-            'komik' => $this->Komik_model->getKomik($id)
+            'komik' => $this->Komik_model->getKomikById($id)
         ];
 
         $this->load->view('layout/header', $data);
         $this->load->view('komik/edit', $data);
         $this->load->view('layout/footer');
+    }
+    public function update($id)
+    {
+        $data = [
+            'title' => 'Edit Komik | Bimanime',
+            'active' => 'komik',
+            'komik' => $this->Komik_model->getKomikById($id)
+        ];
+        $komik = $this->Komik_model->getKomikById($id);
+        $judul = $komik['judul'];
+
+        $rules = [
+
+            [
+                'field' => 'slug',
+                'label' => 'Slug',
+                'rules' => 'required'
+            ],
+            [
+                'field' => 'penulis',
+                'label' => 'Penulis',
+                'rules' => 'required'
+            ],
+            [
+                'field' => 'penerbit',
+                'label' => 'Penerbit',
+                'rules' => 'required'
+            ],
+
+        ];
+        if ($judul != $this->input->post('judul')) {
+            $this->form_validation->set_rules('judul', 'Judul', 'required|is_unique[komik.judul]');
+        } else {
+            $this->form_validation->set_rules('judul', 'Judul', 'required');
+        }
+        $this->form_validation->set_rules($rules);
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view('layout/header', $data);
+            $this->load->view('komik/edit', $data);
+            $this->load->view('layout/footer');
+        } else {
+            $this->Komik_model->editDataKomik($id);
+            $this->session->set_flashdata('success', 'Data berhasil diedit');
+            return redirect('/komik');
+        }
     }
 
     public function detail($id)
