@@ -18,4 +18,13 @@ class Komik_model extends CI_Model
         ];
         $this->db->insert('komik', $data);
     }
+    public function deleteDataKomik($id)
+    {
+        // CARA 1
+        // $this->db->delete('komik', ['id' => $id]);
+
+        // CARA 2
+        $this->db->where('id', $id);
+        $this->db->delete('komik');
+    }
 }

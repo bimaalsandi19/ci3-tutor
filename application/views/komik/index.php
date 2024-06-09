@@ -28,7 +28,7 @@
                     <td><?= $rk['judul']; ?></td>
                     <td>
                         <a href="" class="btn btn-warning">Edit</a>
-                        <a href="" class="btn btn-danger">Delete</a>
+                        <a href="<?= site_url('/komik/delete/') . $rk['id'] ?>" class="btn btn-danger" onclick="return confirm('Apakah anda yakin untuk hapus data ini?')">Delete</a>
                     </td>
                 </tr>
 

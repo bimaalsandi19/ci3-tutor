@@ -53,4 +53,10 @@ class Komik extends CI_Controller
             return redirect('/komik');
         }
     }
+    public function delete($id)
+    {
+        $this->Komik_model->deleteDataKomik($id);
+        $this->session->set_flashdata('success', 'Data berhasil dihapus');
+        return redirect('/komik');
+    }
 }
