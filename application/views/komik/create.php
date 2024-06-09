@@ -4,7 +4,7 @@
             <div class="card">
                 <h5 class="card-header">Form Tambah Data</h5>
                 <div class="card-body">
-                    <form action="" method="post">
+                    <form action="<?= site_url('/komik/save'); ?>" method="post">
                         <div class="form-group">
                             <label for="judul">Judul</label>
                             <input type="text" class="form-control <?= form_error('judul') ? 'is-invalid' : ''; ?>" id="judul" name="judul" autofocus value="<?= set_value('judul'); ?>">

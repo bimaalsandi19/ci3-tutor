@@ -27,6 +27,17 @@ class Komik extends CI_Controller
             'title' => 'Tambah Komik | Bimanime',
             'active' => 'komik',
         ];
+
+        $this->load->view('layout/header', $data);
+        $this->load->view('komik/create');
+        $this->load->view('layout/footer');
+    }
+    public function save()
+    {
+        $data = [
+            'title' => 'Tambah Komik | Bimanime',
+            'active' => 'komik',
+        ];
         $this->form_validation->set_rules('judul', 'Judul', 'required|is_unique[komik.judul]');
         $this->form_validation->set_rules('slug', 'Slug', 'required');
         $this->form_validation->set_rules('penulis', 'Penulis', 'required');
