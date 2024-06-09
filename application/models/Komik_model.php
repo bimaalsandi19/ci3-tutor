@@ -27,4 +27,9 @@ class Komik_model extends CI_Model
         $this->db->where('id', $id);
         $this->db->delete('komik');
     }
+
+    public function getKomikById($id)
+    {
+        return $this->db->get_where('komik', ['id' => $id])->row_array();
+    }
 }

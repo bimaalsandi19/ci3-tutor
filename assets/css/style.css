@@ -1,0 +1,9 @@
+/* body{
+    background: tomato !important;
+} */
+ table thead{
+    text-align: center;
+ }
+ table tbody tr td{
+    vertical-align: middle !important;
+ }

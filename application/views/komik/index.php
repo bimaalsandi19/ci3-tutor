@@ -24,10 +24,19 @@
 
                 <tr>
                     <td><?= $no++; ?></td>
-                    <td><?= $rk['sampul']; ?></td>
+                    <td>
+                        <?php if (empty($rk['sampul'])) : ?>
+                            <img src="<?= site_url('/assets/img/empty.jpg'); ?>" alt="" width="100">
+                        <?php else : ?>
+                            <img src="<?= site_url('/assets/img/') . $rk['sampul']; ?>" alt="" width="100">
+
+                        <?php endif ?>
+
+                    </td>
                     <td><?= $rk['judul']; ?></td>
                     <td>
-                        <a href="" class="btn btn-warning">Edit</a>
+                        <a href="<?= site_url('/komik/detail/') . $rk['id'] ?>" class="btn btn-info">Detail</a>
+                        <a href="<?= site_url('/komik/edit/') . $rk['id'] ?>" class="btn btn-warning">Edit</a>
                         <a href="<?= site_url('/komik/delete/') . $rk['id'] ?>" class="btn btn-danger" onclick="return confirm('Apakah anda yakin untuk hapus data ini?')">Delete</a>
                     </td>
                 </tr>

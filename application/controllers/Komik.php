@@ -42,10 +42,10 @@ class Komik extends CI_Controller
         $this->form_validation->set_rules('slug', 'Slug', 'required');
         $this->form_validation->set_rules('penulis', 'Penulis', 'required');
         $this->form_validation->set_rules('penerbit', 'Penerbit', 'required');
-        $this->form_validation->set_rules('sampul', 'Sampul', 'required');
+        // $this->form_validation->set_rules('sampul', 'Sampul', 'required');
         if ($this->form_validation->run() == false) {
             $this->load->view('layout/header', $data);
-            $this->load->view('komik/create');
+            $this->load->view('komik/create',);
             $this->load->view('layout/footer');
         } else {
             $this->Komik_model->tambahDataKomik();
@@ -58,5 +58,30 @@ class Komik extends CI_Controller
         $this->Komik_model->deleteDataKomik($id);
         $this->session->set_flashdata('success', 'Data berhasil dihapus');
         return redirect('/komik');
+    }
+
+    public function edit($id)
+    {
+        $data = [
+            'title' => 'Edit Komik | Bimanime',
+            'active' => 'komik',
+            'komik' => $this->Komik_model->getKomik($id)
+        ];
+
+        $this->load->view('layout/header', $data);
+        $this->load->view('komik/edit', $data);
+        $this->load->view('layout/footer');
+    }
+
+    public function detail($id)
+    {
+        $data = [
+            'title' => 'Detail Komik | Bimanime',
+            'active' => 'komik',
+            'komik' => $this->Komik_model->getKomikById($id)
+        ];
+        $this->load->view('layout/header', $data);
+        $this->load->view('komik/detail', $data);
+        $this->load->view('layout/footer');
     }
 }
